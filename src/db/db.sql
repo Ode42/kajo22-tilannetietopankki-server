@@ -1,0 +1,1 @@
+CREATE DATABASE kajo22tilannetietopankki;
