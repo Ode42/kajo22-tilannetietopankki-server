@@ -1,7 +1,11 @@
 const express = require("express");
+const bp = require("body-parser");
 
 const app = express();
 const PORT = 3001;
+
+app.use(express.json());
+app.use(express.urlencoded());
 
 const router = require("./routes/router");
 

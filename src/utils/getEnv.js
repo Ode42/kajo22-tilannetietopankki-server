@@ -1,7 +1,7 @@
 const poolData = require("./../env.json");
 
 const getEnv = () => {
-  return PoolData.variables;
+  return poolData.variables;
 };
 
 module.exports = getEnv;
