@@ -26,17 +26,26 @@ router.get("/labels", async (request, response) => {
 router.post("/tilannetiedot", async (request, response) => {
   try {
     const { tietoKuvaus } = request.body;
+    const { tieto_time } = request.body;
     const { tietoLahettaja } = request.body;
     const { tietoLabel } = request.body;
 
     const uusiTieto = await pool.query(
-      "INSERT INTO tilannetiedot (kuvaus, lahettaja, label) VALUES ($1, $2, $3) RETURNING *",
-      [tietoKuvaus, tietoLahettaja, tietoLabel]
+      "INSERT INTO tilannetiedot (kuvaus, tieto_time, lahettaja, label) VALUES ($1, $2, $3, $4) RETURNING *",
+      [tietoKuvaus, tieto_time, tietoLahettaja, tietoLabel]
     );
 
     response.json(uusiTieto.rows);
   } catch (error) {
     console.error(error);
   }
+});
+
+router.delete("/tilannetiedot/:id", (request, response) => {
+  const tietoId = request.params.id;
+  const deleteTieto = pool.query(
+    `DELETE FROM tilannetiedot WHERE tieto_id = ${tietoId}`
+  );
+  response.send(204);
 });
 module.exports = router;
