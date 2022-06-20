@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("./../db/db");
+const labels = require("./../utils/labels");
 
 router.get("/", (request, response) => {
   response.send("Hello from tilannetiedot");
@@ -15,6 +16,13 @@ router.get("/tilannetiedot", async (request, response) => {
   }
 });
 
+router.get("/labels", async (request, response) => {
+  try {
+    response.send(labels);
+  } catch (error) {
+    console.error(error);
+  }
+});
 router.post("/tilannetiedot", async (request, response) => {
   try {
     const { tietoKuvaus } = request.body;
