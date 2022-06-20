@@ -17,7 +17,6 @@ router.get("/tilannetiedot", async (request, response) => {
 
 router.post("/tilannetiedot", async (request, response) => {
   try {
-    console.log(request.body);
     const { tietoKuvaus } = request.body;
     const { tietoLahettaja } = request.body;
     const { tietoLabel } = request.body;
