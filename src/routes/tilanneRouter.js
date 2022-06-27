@@ -10,7 +10,7 @@ router.get("/", (request, response) => {
 router.get("/tilannetiedot", async (request, response) => {
   try {
     const tilannetiedot = await pool.query("SELECT * FROM tilannetiedot");
-    response.json(tilannetiedot.rows);
+    response.json(tilannetiedot);
   } catch (error) {
     console.error(error);
   }
