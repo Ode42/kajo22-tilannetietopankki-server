@@ -3,6 +3,7 @@ const router = express.Router();
 const pool = require("../models/db");
 const labels = require("../config/labels");
 const getTilannetiedot = require("./../services/getTilannetiedot");
+const newTilannetieto = require("./../services/newTilannetieto");
 
 router.get("/", (request, response) => {
   response.send("Hello from tilannetiedot");
@@ -24,6 +25,7 @@ router.get("/labels", async (request, response) => {
     console.error(error);
   }
 });
+
 router.post("/tilannetiedot", async (request, response) => {
   try {
     const { tietoKuvaus } = request.body;
@@ -31,12 +33,13 @@ router.post("/tilannetiedot", async (request, response) => {
     const { tietoLahettaja } = request.body;
     const { tietoLabel } = request.body;
 
-    const uusiTieto = await pool.query(
-      "INSERT INTO tilannetiedot (kuvaus, tieto_time, lahettaja, label) VALUES ($1, $2, $3, $4) RETURNING *",
-      [tietoKuvaus, tieto_time, tietoLahettaja, tietoLabel]
+    const uusiTieto = await newTilannetieto(
+      tietoKuvaus,
+      tieto_time,
+      tietoLahettaja,
+      tietoLabel
     );
-
-    response.json(uusiTieto.rows);
+    response.json(uusiTieto);
   } catch (error) {
     console.error(error);
   }
