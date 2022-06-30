@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
-const router = require("./routes/router");
+const router = require("./api/router");
 
 app.use("/api/v1", router);
 

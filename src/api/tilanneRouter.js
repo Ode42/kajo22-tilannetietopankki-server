@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const pool = require("./../db/db");
-const labels = require("./../utils/labels");
+const pool = require("../models/db");
+const labels = require("../config/labels");
 
 router.get("/", (request, response) => {
   response.send("Hello from tilannetiedot");

@@ -1,4 +1,4 @@
-const getEnv = require("./../utils/getEnv");
+const getEnv = require("../config/getEnv");
 const Pool = require("pg").Pool;
 
 const pool = new Pool({

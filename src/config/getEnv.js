@@ -1,4 +1,4 @@
-const poolData = require("./../env.json");
+const poolData = require("../env.json");
 
 const getEnv = () => {
   return poolData.variables;

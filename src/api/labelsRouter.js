@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const labels = require("./../utils/labels");
+const labels = require("./../config/labels");
 
 router.get("/", (request, response) => {
   response.send(labels);
