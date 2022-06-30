@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../models/db");
 const labels = require("../config/labels");
+const getTilannetiedot = require("./../services/getTilannetiedot");
 
 router.get("/", (request, response) => {
   response.send("Hello from tilannetiedot");
@@ -9,7 +10,7 @@ router.get("/", (request, response) => {
 
 router.get("/tilannetiedot", async (request, response) => {
   try {
-    const tilannetiedot = await pool.query("SELECT * FROM tilannetiedot");
+    const tilannetiedot = await getTilannetiedot();
     response.json(tilannetiedot);
   } catch (error) {
     console.error(error);
