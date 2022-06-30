@@ -4,6 +4,7 @@ const pool = require("../models/db");
 const labels = require("../config/labels");
 const getTilannetiedot = require("./../services/getTilannetiedot");
 const newTilannetieto = require("./../services/newTilannetieto");
+const deleteTilannetieto = require("./../services/deleteTilannetieto");
 
 router.get("/", (request, response) => {
   response.send("Hello from tilannetiedot");
@@ -45,11 +46,10 @@ router.post("/tilannetiedot", async (request, response) => {
   }
 });
 
-router.delete("/tilannetiedot/:id", (request, response) => {
-  const tietoId = request.params.id;
-  const deleteTieto = pool.query(
-    `DELETE FROM tilannetiedot WHERE tieto_id = ${tietoId}`
-  );
-  response.send(204);
+router.delete("/tilannetiedot/:id", async (request, response) => {
+  const tieto_id = request.params.id;
+  const deleted = await deleteTilannetieto(tieto_id);
+
+  return deleted;
 });
 module.exports = router;
