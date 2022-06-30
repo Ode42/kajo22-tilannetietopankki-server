@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const pool = require("../models/db");
 const labels = require("../config/labels");
 const getTilannetiedot = require("./../services/getTilannetiedot");
 const newTilannetieto = require("./../services/newTilannetieto");
